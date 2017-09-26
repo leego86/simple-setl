@@ -32,11 +32,11 @@ import org.apache.commons.lang.math.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.otter.node.common.config.ConfigClientService;
 import com.alibaba.otter.shared.arbitrate.ArbitrateEventService;
 import com.alibaba.otter.shared.arbitrate.model.TerminEventData;
 import com.alibaba.otter.shared.arbitrate.model.TerminEventData.TerminType;
 import com.alibaba.otter.shared.common.model.config.pipeline.Pipeline;
+import com.lppz.config.ConfigClientService;
 import com.lppz.etl.common.jmx.StageAggregationCollector;
 import com.lppz.etl.common.pipe.impl.RowDataPipeDelegate;
 

@@ -25,16 +25,17 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-import com.alibaba.otter.node.common.config.ConfigClientService;
-import com.alibaba.otter.node.common.config.NodeTaskListener;
-import com.alibaba.otter.node.common.config.NodeTaskService;
 import com.alibaba.otter.node.common.config.model.NodeTask;
 import com.alibaba.otter.node.common.config.model.NodeTask.TaskEvent;
-import com.lppz.etl.load.LoadTask;
 import com.alibaba.otter.shared.arbitrate.ArbitrateEventService;
 import com.alibaba.otter.shared.arbitrate.ArbitrateManageService;
 import com.alibaba.otter.shared.arbitrate.impl.manage.NodeSessionExpired;
@@ -48,11 +49,15 @@ import com.alibaba.otter.shared.common.utils.JsonUtils;
 import com.alibaba.otter.shared.common.utils.version.VersionInfo;
 import com.google.common.base.Function;
 import com.google.common.collect.MapMaker;
+import com.lppz.config.ConfigClientService;
+import com.lppz.config.NodeTaskListener;
+import com.lppz.config.NodeTaskService;
 import com.lppz.etl.common.datasource.DataSourceService;
 import com.lppz.etl.common.db.dialect.DbDialectFactory;
 import com.lppz.etl.common.jmx.StageAggregationCollector;
 import com.lppz.etl.common.task.GlobalTask;
 import com.lppz.etl.extract.ExtractTask;
+import com.lppz.etl.load.LoadTask;
 import com.lppz.etl.select.SelectTask;
 import com.lppz.etl.transform.TransformTask;
 
@@ -62,7 +67,8 @@ import com.lppz.etl.transform.TransformTask;
  * @author jianghang 2012-4-21 下午04:48:12
  * @version 4.0.2
  */
-public class OtterController implements NodeTaskListener, OtterControllerMBean {
+@Component
+public class OtterController implements NodeTaskListener, OtterControllerMBean, InitializingBean {
 
     private static final Logger                   logger      = LoggerFactory.getLogger(OtterController.class);
 
@@ -73,8 +79,10 @@ public class OtterController implements NodeTaskListener, OtterControllerMBean {
                                                                       return new MapMaker().makeMap();
                                                                   }
                                                               });
+    @Resource
     private ConfigClientService                   configClientService;
     private ArbitrateManageService                arbitrateManageService;
+    @Resource
     private NodeTaskService                       nodeTaskService;
     // 各种资源管理
     private DataSourceService                     dataSourceService;                                           // 连接池资源
@@ -86,7 +94,7 @@ public class OtterController implements NodeTaskListener, OtterControllerMBean {
 
     public void start() throws Throwable {
         // 初始化节点
-        initNid();
+//        initNid();
         nodeTaskService.addListener(this); // 将自己添加为NodeTask响应者
     }
 
@@ -412,5 +420,14 @@ public class OtterController implements NodeTaskListener, OtterControllerMBean {
     public void setExecutorService(ExecutorService executorService) {
         this.executorService = executorService;
     }
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		try {
+			this.start();
+		} catch (Throwable e) {
+			logger.error("启动异常", e);
+		}
+	}
 
 }

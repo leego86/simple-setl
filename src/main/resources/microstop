@@ -39,7 +39,7 @@ done
 RUN_CMD="\"$JAVA_HOME/bin/java\""
 RUN_CMD="$RUN_CMD -DLOG_HOME=\"logbiz\""
 RUN_CMD="$RUN_CMD -classpath \"$LPPZ_MICRO_CLASSPATH\""
-RUN_CMD="$RUN_CMD com.lppz.mirc.init.MircServiceDestory $@"
+RUN_CMD="$RUN_CMD com.lppz.init.EtlServiceDestory $@"
 RUN_CMD="$RUN_CMD > \"/dev/null\" 2>&1 &"
 echo $RUN_CMD
 eval $RUN_CMD

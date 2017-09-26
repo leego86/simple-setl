@@ -65,7 +65,7 @@ RUN_CMD="\"$JAVA_HOME/bin/java\""
 RUN_CMD="$RUN_CMD -DLOG_HOME=$LOG_HOME"
 RUN_CMD="$RUN_CMD -classpath \"$LPPZ_MICRO_CLASSPATH\""
 RUN_CMD="$RUN_CMD $JAVA_OPTS"
-RUN_CMD="$RUN_CMD com.lppz.mirc.init.MircServiceStartup $@"
+RUN_CMD="$RUN_CMD com.lppz.init.EtlServiceStartup $@"
 RUN_CMD="$RUN_CMD > \"/dev/null\" 2> $LOG_HOME/error.log &"
 echo $RUN_CMD
 eval $RUN_CMD

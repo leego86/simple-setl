@@ -11,11 +11,11 @@ import com.lppz.dubbo.BaseMicroStartup;
 @Configuration
 @ImportResource({"classpath:/META-INF/micro-server-spring.xml"})
 //@Import({DubboKafkaProducerConfiguration.class})
-public class MircServiceStartup extends BaseMicroStartup{
-	static Logger logger = LoggerFactory.getLogger(MircServiceStartup.class);
+public class EtlServiceStartup extends BaseMicroStartup{
+	static Logger logger = LoggerFactory.getLogger(EtlServiceStartup.class);
 	private static AnnotationConfigApplicationContext context;
 	static {
-		context = new AnnotationConfigApplicationContext(MircServiceStartup.class);
+		context = new AnnotationConfigApplicationContext(EtlServiceStartup.class);
 	}
 	
 	public static void main(String[] args) {

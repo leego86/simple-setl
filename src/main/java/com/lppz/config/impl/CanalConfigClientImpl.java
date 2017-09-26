@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.alibaba.otter.canal.instance.manager.model.Canal;
 import com.alibaba.otter.canal.instance.manager.model.CanalParameter;
 import com.alibaba.otter.canal.instance.manager.model.CanalParameter.BatchMode;
@@ -20,6 +22,7 @@ import com.alibaba.otter.canal.instance.manager.model.CanalParameter.StorageScav
 import com.alibaba.otter.canal.instance.manager.model.CanalStatus;
 import com.lppz.config.CanalConfigClient;
 
+@Service
 public class CanalConfigClientImpl implements CanalConfigClient {
 
 	@Override

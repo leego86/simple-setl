@@ -6,10 +6,10 @@ import com.lppz.dubbo.MicroServiceDestoryInterface;
 import com.lppz.dubbo.micro.MicroServiceDestory;
 
 @Service(protocol = "rest", timeout = 100000)
-public class MircServiceDestory extends MicroServiceDestory implements MicroServiceDestoryInterface{
+public class EtlServiceDestory extends MicroServiceDestory implements MicroServiceDestoryInterface{
 
 	public static void main(String[] args) {
-		MircServiceDestory destory = new MircServiceDestory();
+		EtlServiceDestory destory = new EtlServiceDestory();
 		destory.shutdown();
 	}
 }
