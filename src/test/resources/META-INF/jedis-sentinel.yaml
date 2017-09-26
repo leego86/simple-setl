@@ -1,0 +1,9 @@
+!!com.lppz.configuration.jedis.JedisSentinelYamlBean
+jedisClusterNode:
+- {port: 26302, host: 10.8.102.168}
+- {port: 26303, host: 10.8.102.169}
+- {port: 26301, host: 10.8.102.170}
+jedisClusterPool: {blockWhenExhausted: false, maxIdle: '5000', maxTotal: '50000',
+  maxWaitMillis: '10000', numTestsPerEvictionRun: '100', testOnBorrow: false, testOnReturn: false}
+masterName: masterlppz
+timeout: 50000

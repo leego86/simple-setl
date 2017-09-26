@@ -1,0 +1,9 @@
+!!com.lppz.configuration.jedis.JedisClusterYamlBean
+jedisClusterNode:
+- {port: 6380, host: 192.168.19.71}
+- {port: 6380, host: 192.168.19.72}
+- {port: 6380, host: 192.168.19.73}
+jedisClusterPool: {blockWhenExhausted: false, maxIdle: '5000', maxTotal: '50000',
+  maxWaitMillis: '50000', numTestsPerEvictionRun: '100', testOnBorrow: false, testOnReturn: false}
+maxRedirections: 10
+timeout: 50000

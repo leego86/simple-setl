@@ -1,0 +1,18 @@
+{
+datasource-dubbo-cache: !!com.lppz.core.datasource.LppzBasicDataSource {
+dataSourceClassName: 'com.mysql.jdbc.jdbc2.optional.MysqlDataSource',
+dataSourceProperties: {url: 'jdbc:mysql://127.0.0.1:3306/omsext?useConfigs=maxPerformance',user: 'root',password: 'mysqlroot'},
+dataSourceJNDI: ,
+isCobar: 'false',
+configLocation: 'classpath:mybatis-config.xml',
+mapperLocation: 'classpath:omssqlmap/*.xml',
+baseScanPackge: 'com.lppz.dubbo.oms.init.persist',
+autoCommit: 'true',
+connectionTimeout: '200000',
+idleTimeout: '180000',
+maxLifetime: '360000',
+maximumPoolSize: '100',
+minimumIdle: '50'
+}
+}
+
