@@ -255,10 +255,7 @@ public class ConfigClientServiceImpl implements ConfigClientService {
 	
 
 	private Node buildNodeByNid(Long key) {
-		Node node = new Node();
-		node.setId(key);
-		// TODO Auto-generated method stub
-		return node;
+		return buildNode(key);
 	}
 	
 	private Channel buildChannelByPipelineId(Long pipelineId) {
@@ -339,14 +336,22 @@ public class ConfigClientServiceImpl implements ConfigClientService {
 
 	@Override
 	public Node currentNode() {
+		Node node = nodeCache.get(nid);
+        if (node == null) {
+            throw new ConfigException("nid:" + nid + " in manager[" + "xxx"
+                                      + "]is not found!");
+        }
+        return node;
+	}
+	
+	private Node buildNode(long nid){
 		Node node = new Node();
-		node.setId(1L);
+		node.setId(nid);
 		node.setName("node55");
 		node.setPort(1000L);
 		node.setIp("10.6.24.55");
 		node.setStatus(NodeStatus.STOP);
 		node.setParameters(buildNodeParameter());
-		// TODO Auto-generated method stub
 		return node;
 	}
 
